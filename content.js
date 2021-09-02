@@ -1,5 +1,7 @@
 (async function () {
   let rules = await getRules();
+  const isEnabled = await checkExtensionEnable();
+  if(!isEnabled) return;
   const currentHostRules = rules.filter(
     (rule) => rule.host === location.origin
   );
@@ -35,5 +37,14 @@
         return resolve([]);
       });
     });
+  }
+
+  async function checkExtensionEnable(){
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.get(["enable"], (items) => {
+        if(items.enable) return resolve(true);
+        return resolve(false);
+      })
+    })
   }
 })();
