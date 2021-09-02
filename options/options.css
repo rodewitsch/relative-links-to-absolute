@@ -1,0 +1,218 @@
+body {
+  background-color: #f1efef;
+  height: 100%;
+  margin: 20px 0;
+  padding: 0;
+  font-family: arial, sans-serif;
+}
+
+header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  height: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin: 40px auto 20px;
+  padding: 32px;
+  width: 650px;
+}
+
+.header-title {
+  font-size: 22px;
+}
+
+.header-text {
+  bottom: 0;
+  white-space: nowrap;
+  color: #333;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: -143px;
+}
+
+.action-buttons {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.action-buttons button {
+  margin-right: 15px;
+}
+
+.option {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option .checkbox {
+  margin-right: 10px;
+}
+
+.option label {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.option input {
+  cursor: pointer;
+  opacity: 0;
+  height: 20px;
+  width: 25px;
+  margin-right: -25px;
+  z-index: 2;
+}
+
+.option input:checked + div {
+  background: url(/assets/images/vocab-test-check.svg) center center no-repeat
+    #71b26f;
+  border-color: #71b26f;
+  background-size: 15px;
+}
+
+.nested-options {
+  margin-left: 35px;
+}
+
+.checkbox {
+  border-radius: 4px;
+  border: 2px solid #71b26f;
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox.checked {
+  background: url(/assets/images/vocab-test-check.svg) center center no-repeat
+    #71b26f;
+  border-color: #71b26f;
+  background-size: 15px;
+}
+
+/* General button style */
+.btn {
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 11px;
+  padding: 7px 12px;
+  height: 30px;
+  border-radius: 3px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-green {
+  color: #fff !important;
+  background-color: #79c257;
+}
+
+.btn-red {
+  color: #fff !important;
+  background-color: #c26757;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+/* Pseudo elements for icons */
+.btn:before {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:hover {
+  background: #bac0ba;
+}
+
+.btn:active {
+  background: #cfcfcf;
+  top: 2px;
+}
+
+.btn:before {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  line-height: 3;
+  font-size: 140%;
+  width: 60px;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 10px 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+.rule {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rule input {
+  margin-bottom: 10px;
+}
+
+.rule .actions {
+  display: flex;
+  justify-content: space-between;
+}

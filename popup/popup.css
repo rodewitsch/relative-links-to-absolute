@@ -1,0 +1,46 @@
+body {
+  width: 210px;
+  height: 65px;
+  background: #f1efef;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  cursor: default;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.checkbox {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkbox input {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+}
+
+.checkbox label {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.checkbox label:hover {
+  text-decoration: underline;
+}
+
+.settings {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.settings:hover {
+  text-decoration: underline;
+}
