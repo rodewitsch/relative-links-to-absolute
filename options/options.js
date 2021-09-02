@@ -1,18 +1,17 @@
-document.addEventListener('DOMContentLoaded', async () => {
-
+document.addEventListener("DOMContentLoaded", async () => {
   let rules = await loadRules();
 
-  document.getElementById('add-rule').onclick = () => {
+  document.getElementById("add-rule").onclick = () => {
     addRule();
     render(0);
-  }
+  };
 
   function render(activeNumber = null) {
-    const settingsContent = document.getElementById('settings-content');
-    settingsContent.innerHTML = '';
+    const settingsContent = document.getElementById("settings-content");
+    settingsContent.innerHTML = "";
     rules.forEach((setting, settingsIndex) => {
-      const settingButton = document.createElement('button');
-      settingButton.classList.add('accordion');
+      const settingButton = document.createElement("button");
+      settingButton.classList.add("accordion");
       settingButton.innerHTML = `
         <strong>Host:</strong>
         <span>${setting.host}</span><br>
@@ -22,11 +21,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         <span>${setting.value}</span>
       `;
 
-      const settingElem = document.createElement('div');
-      settingElem.classList.add('panel');
+      const settingElem = document.createElement("div");
+      settingElem.classList.add("panel");
 
-      const ruleElem = document.createElement('div');
-      ruleElem.classList.add('rule');
+      const ruleElem = document.createElement("div");
+      ruleElem.classList.add("rule");
       ruleElem.innerHTML = `
           <label for="${settingsIndex}-host">Host</label>
           <input type="text" class="host" id="${settingsIndex}-host" value="${setting.host}">
@@ -43,13 +42,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
       settingElem.appendChild(ruleElem);
 
-      settingElem.querySelector('.actions .save').onclick = saveRules;
+      settingElem.querySelector(".actions .save").onclick = saveRules;
 
-      settingElem.querySelector('.actions .remove').onclick = (event) => {
+      settingElem.querySelector(".actions .remove").onclick = (event) => {
         removeRule(event);
         render();
         saveRules();
-      }
+      };
 
       settingsContent.appendChild(settingButton);
       settingsContent.appendChild(settingElem);
@@ -74,10 +73,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function addRule() {
     rules.unshift({
-      host: '',
-      selector: '',
-      attribute: '',
-      value: ''
+      host: "",
+      selector: "",
+      attribute: "",
+      value: "",
     });
   }
 
@@ -88,17 +87,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function saveRules() {
     const rules = [];
-    (document.querySelectorAll('.rule') || []).forEach(rule => {
+    (document.querySelectorAll(".rule") || []).forEach((rule) => {
       rules.push({
-        host: rule.querySelector('.host').value,
-        selector: rule.querySelector('.selector').value,
-        attribute: rule.querySelector('.attribute').value,
-        value: rule.querySelector('.value').value
-      })
+        host: rule.querySelector(".host").value,
+        selector: rule.querySelector(".selector").value,
+        attribute: rule.querySelector(".attribute").value,
+        value: rule.querySelector(".value").value,
+      });
     });
     chrome.storage.sync.set(
       {
-        rules: JSON.stringify(rules)
+        rules: JSON.stringify(rules),
       },
       () => location.reload()
     );
@@ -106,10 +105,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function loadRules() {
     return new Promise((resolve, reject) => {
-      chrome.storage.sync.get(['rules'],
-        (items) => resolve(JSON.parse(items.rules)));
-    })
+      chrome.storage.sync.get(["rules"], (items) => {
+        if(items.rules) return resolve(JSON.parse(items.rules));
+        return resolve([]);
+      });
+    });
   }
-
 });
-
