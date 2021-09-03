@@ -5,8 +5,8 @@
   const currentHostRules = rules.filter(
     (rule) => rule.host === location.origin
   );
+  window.addEventListener('load', () => changeLinks(currentHostRules));
   const watchedAttributes = currentHostRules.map((item) => item.attribute);
-
   const observer = new MutationObserver((mutationsList) => {
     for (const mutation of mutationsList) {
       if (mutation.type === "attributes") {
