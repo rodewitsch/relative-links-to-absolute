@@ -5,17 +5,19 @@ document.addEventListener(
     const OPTIONS_BUTTON = document.querySelector(".settings");
     const CHECKBOX = document.querySelector("#enable-rules");
 
-    chrome.storage.sync.get(['enable'],
-      (items) => CHECKBOX.checked = (items || {}).enable) || false;;
+    chrome.storage.sync.get(
+      ["enable"],
+      (items) => (CHECKBOX.checked = (items || {}).enable || false)
+    );
 
     CHECKBOX.onchange = (event) => {
       chrome.storage.sync.set(
         {
-          enable: event.currentTarget.checked
+          enable: event.currentTarget.checked,
         },
-        () => { }
+        () => {}
       );
-    }
+    };
 
     OPTIONS_BUTTON.onclick = () => {
       if (chrome.runtime.openOptionsPage) {
