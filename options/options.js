@@ -115,6 +115,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     rules.splice(index, 1);
   }
 
+  function isValidSelector(selector){
+    try{
+      document.querySelector(selector);
+      return true;
+    }
+    catch(e){
+      return false;
+    }
+  }
+
   function checkUnsavedRules() {
     let invalid = false;
     (document.querySelectorAll(".rule") || []).forEach((rule) => {
@@ -123,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const attributeElem = rule.querySelector(".attribute");
       const valueElem = rule.querySelector(".value");
       hostElem.classList[hostElem.value ? "remove" : "add"]("invalid");
-      selectorElem.classList[selectorElem.value ? "remove" : "add"]("invalid");
+      selectorElem.classList[selectorElem.value && isValidSelector(selectorElem.value) ? "remove" : "add"]("invalid");
       hostElem.classList[hostElem.value ? "remove" : "add"]("invalid");
       attributeElem.classList[attributeElem.value ? "remove" : "add"](
         "invalid"
@@ -133,7 +143,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         !hostElem.value ||
         !selectorElem.value ||
         !attributeElem.value ||
-        !valueElem.value
+        !valueElem.value ||
+        !isValidSelector(selectorElem.value)
       ) {
         invalid = true;
       }
@@ -150,7 +161,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const attributeElem = rule.querySelector(".attribute");
       const valueElem = rule.querySelector(".value");
       hostElem.classList[hostElem.value ? "remove" : "add"]("invalid");
-      selectorElem.classList[selectorElem.value ? "remove" : "add"]("invalid");
+      selectorElem.classList[selectorElem.value && isValidSelector(selectorElem.value) ? "remove" : "add"]("invalid");
       hostElem.classList[hostElem.value ? "remove" : "add"]("invalid");
       attributeElem.classList[attributeElem.value ? "remove" : "add"](
         "invalid"
@@ -160,7 +171,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         !hostElem.value ||
         !selectorElem.value ||
         !attributeElem.value ||
-        !valueElem.value
+        !valueElem.value ||
+        !isValidSelector(selectorElem.value)
       ) {
         invalid = true;
         return;
