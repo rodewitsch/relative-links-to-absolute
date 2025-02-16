@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         settingElem.querySelector('.selector').value = setting.selector;
 
-        settingElem.querySelector('select option[value="' + setting.attribute + '"]').selected = true;     
+        if(setting.attribute) settingElem.querySelector('select option[value="' + setting.attribute + '"]').selected = true;     
 
         settingElem.querySelector(".actions .save").onclick = saveRules;
 
