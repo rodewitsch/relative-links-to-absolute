@@ -34,7 +34,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           <label for="${settingsIndex}-selector">Selector*</label>
           <input type="text" class="selector" id="${settingsIndex}-selector" value="${setting.selector}" placeholder="Example: img[src^='/page']" required="required">
           <label for="${settingsIndex}-attribute">Attribute*</label>
-          <input type="text" class="attribute" id="${settingsIndex}-attribute" value="${setting.attribute}" placeholder="Example: src" required="required">
+          <select type="text" class="attribute" id="${settingsIndex}-attribute" required="required">
+             <option value="src">src</option>
+             <option value="href">href</option>
+             <option value="background-image">background-image</option>
+          </select>
           <label for="${settingsIndex}-value">Value*</label>
           <input type="text" class="value" id="${settingsIndex}-value" value="${setting.value}" placeholder="Example: http://192.168.1.2:4000" required="required">
           <div class="actions">
@@ -43,6 +47,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         `;
         settingElem.appendChild(ruleElem);
+
+        settingElem.querySelector('.selector').value = setting.selector;
+
+        settingElem.querySelector('select option[value="' + setting.attribute + '"]').selected = true;     
 
         settingElem.querySelector(".actions .save").onclick = saveRules;
 
@@ -59,7 +67,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const acc = document.getElementsByClassName("accordion");
       for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function (event) {
-          if (activeNumber === null && checkUnsavedRules()) return;
           const activeAccordion = document.querySelector(".accordion.active");
           if (
             activeAccordion &&
@@ -115,12 +122,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     rules.splice(index, 1);
   }
 
-  function isValidSelector(selector){
-    try{
+  function isValidSelector(selector) {
+    try {
       document.querySelector(selector);
       return true;
     }
-    catch(e){
+    catch (e) {
       return false;
     }
   }

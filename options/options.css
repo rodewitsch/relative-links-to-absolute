@@ -139,7 +139,7 @@ a {
   flex-direction: column;
 }
 
-.rule input {
+.rule input, .rule select {
   margin-bottom: 10px;
 }
 
