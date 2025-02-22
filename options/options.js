@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         settingElem.querySelector('.selector').value = setting.selector;
 
-        if(setting.attribute) settingElem.querySelector('select option[value="' + setting.attribute + '"]').selected = true;     
+        if (setting.attribute) settingElem.querySelector('select option[value="' + setting.attribute + '"]').selected = true;
 
         settingElem.querySelector(".actions .save").onclick = saveRules;
 
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function loadRules() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.storage.sync.get(["rules"], (items) => {
         if (items.rules) return resolve(JSON.parse(items.rules));
         return resolve([]);

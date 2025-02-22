@@ -48,7 +48,7 @@
   }
 
   async function getRules() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.storage.sync.get(["rules"], (items) => {
         if (items.rules) return resolve(JSON.parse(items.rules));
         return resolve([]);
@@ -57,7 +57,7 @@
   }
 
   async function checkExtensionEnable() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.storage.sync.get(["enable"], (items) => {
         if (items.enable) return resolve(true);
         return resolve(false);
